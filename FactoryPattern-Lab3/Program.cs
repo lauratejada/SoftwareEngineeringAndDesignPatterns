@@ -1,15 +1,24 @@
 ﻿SecuritySystem newSecuritySystem = new SecuritySystem();
 
-User newAdministrator = newSecuritySystem.AuthenticationMethod(true, true);
-newAdministrator.PasswordHash();
+try
+{
+    
 
-User newAuthorizedUser = newSecuritySystem.AuthenticationMethod(true, false);
-newAuthorizedUser.PasswordHash();
+    User newAdministrator = newSecuritySystem.AuthenticationMethod(true, true);
+    newAdministrator.PasswordHash();
 
-User newUserWithoutTwoFactorAuthentication = newSecuritySystem.AuthenticationMethod(false, true);
-newUserWithoutTwoFactorAuthentication.PasswordHash();
+    User newAuthorizedUser = newSecuritySystem.AuthenticationMethod(true, false);
+    newAuthorizedUser.PasswordHash();
 
-//User newUserException = newSecuritySystem.AuthenticationMethod(false, false);
+    User newUserWithoutTwoFactorAuthentication = newSecuritySystem.AuthenticationMethod(false, true);
+    newUserWithoutTwoFactorAuthentication.PasswordHash();
+
+    User newUserException = newSecuritySystem.AuthenticationMethod(false, false);
+} 
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
 
 // factory class
 public class SecuritySystem
